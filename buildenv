@@ -1,14 +1,16 @@
+SHDOC_VERSION="1.0.0"
 export ZOPEN_STABLE_URL="git@github.com:reconquest/shdoc.git"
 export ZOPEN_STABLE_DEPS="bash make automake autoconf git zoslib gawk sed grep"
 export ZOPEN_BUILD_LINE="STABLE"
 export ZOPEN_RUNTIME_DEPS="bash gawk"
 
-
 export ZOPEN_BOOTSTRAP="skip"
 export ZOPEN_CONFIGURE="skip"
 export ZOPEN_BUILD="skip"
 export ZOPEN_CLONE_SUBMODULES="yes"
+export ZOPEN_CHECK="${PWD}/shdoc/tests/run_tests"
 export ZOPEN_INSTALL_OPTS="install DST=\${ZOPEN_INSTALL_DIR}/bin/"
+export _EDC_SIG_DFLT=1
 
 zopen_pre_install() {
   mkdir -p "${ZOPEN_INSTALL_DIR}/bin/"
@@ -41,5 +43,5 @@ zopen_get_version()
 {
   # Modify to echo the version of your tool/library
   # Rather than hardcoding the version, obtain the version by running the tool/library
-  echo "1.0.0"
+  echo "$(SHDOC_VERSION)"
 }
