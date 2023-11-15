@@ -1,8 +1,13 @@
-SHDOC_VERSION="1.0.0"
-export ZOPEN_STABLE_URL="https://github.com/ZOSOpenTools/shdocport.git"
-export ZOPEN_STABLE_DEPS="bash make automake autoconf git zoslib gawk sed grep"
-export ZOPEN_BUILD_LINE="STABLE"
+SHDOC_VERSION="1.2"
+export ZOPEN_DEV_URL="https://github.com/reconquest/shdoc.git"
+export ZOPEN_STABLE_URL="https://github.com/reconquest/shdoc/archive/refs/tags/v${SHDOC_VERSION}.tar.gz"
+export ZOPEN_STABLE_DEPS="tar bash make automake autoconf git zoslib gawk sed grep coreutils"
+export ZOPEN_DEV_DEPS="bash make automake autoconf git zoslib gawk sed grep coreutils"
+export ZOPEN_BUILD_LINE="DEV"
 export ZOPEN_RUNTIME_DEPS="bash gawk"
+export ZOPEN_NAME="shdoc-${SHDOC_VERSION}"
+rm -f "v${SHDOC_VERSION}"
+ln -s ${ZOPEN_NAME} "v${SHDOC_VERSION}"
 
 export ZOPEN_BOOTSTRAP="skip"
 export ZOPEN_CONFIGURE="skip"
@@ -43,5 +48,5 @@ zopen_get_version()
 {
   # Modify to echo the version of your tool/library
   # Rather than hardcoding the version, obtain the version by running the tool/library
-  echo "$(SHDOC_VERSION)"
+  echo "${SHDOC_VERSION}"
 }
