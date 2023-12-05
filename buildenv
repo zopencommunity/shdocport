@@ -1,24 +1,36 @@
 SHDOC_VERSION="1.2"
 export ZOPEN_DEV_URL="https://github.com/reconquest/shdoc.git"
 export ZOPEN_STABLE_URL="https://github.com/reconquest/shdoc/archive/refs/tags/v${SHDOC_VERSION}.tar.gz"
-export ZOPEN_STABLE_DEPS="tar bash make automake autoconf git zoslib gawk sed grep coreutils"
-export ZOPEN_DEV_DEPS="bash make automake autoconf git zoslib gawk sed grep coreutils"
+export ZOPEN_STABLE_DEPS="bash make automake autoconf git zoslib gawk sed grep coreutils getopt"
+export ZOPEN_DEV_DEPS="bash make automake autoconf git zoslib gawk sed grep coreutils getopt"
 export ZOPEN_BUILD_LINE="DEV"
 export ZOPEN_RUNTIME_DEPS="bash gawk"
-export ZOPEN_NAME="shdoc-${SHDOC_VERSION}"
-rm -f "v${SHDOC_VERSION}"
-ln -s ${ZOPEN_NAME} "v${SHDOC_VERSION}"
-
 export ZOPEN_BOOTSTRAP="skip"
 export ZOPEN_CONFIGURE="skip"
 export ZOPEN_BUILD="skip"
-export ZOPEN_CLONE_SUBMODULES="yes"
+export ZOPEN_CLONE_SUBMODULES="yes" 
 export ZOPEN_CHECK="${PWD}/shdoc/tests/run_tests"
 export ZOPEN_INSTALL_OPTS="install DST=\${ZOPEN_INSTALL_DIR}/bin/"
 export _EDC_SIG_DFLT=1
 
+export ZOPEN_NAME="shdoc-${SHDOC_VERSION}"
+rm -f "v${SHDOC_VERSION}"
+ln -s ${ZOPEN_NAME} "v${SHDOC_VERSION}"
+
+zopen_init()
+{
+  export LIBPATH="$COREUTILS_HOME/libexec/coreutils:$LIBPATH"
+}
+
+
 zopen_pre_install() {
   mkdir -p "${ZOPEN_INSTALL_DIR}/bin/"
+}
+
+zopen_post_install()
+{
+  path="$GAWK_HOME/bin/gawk"
+  sed -i "s;/usr/bin/gawk;$path;"  ${ZOPEN_INSTALL_DIR}/bin/shdoc
 }
 
 zopen_check_results()
