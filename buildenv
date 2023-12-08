@@ -27,10 +27,12 @@ zopen_pre_install() {
   mkdir -p "${ZOPEN_INSTALL_DIR}/bin/"
 }
 
-zopen_post_install()
+zopen_append_to_setup()
 {
-  path="$GAWK_HOME/bin/gawk"
-  sed -i "s;/usr/bin/gawk;$path;"  ${ZOPEN_INSTALL_DIR}/bin/shdoc
+cat <<EOF
+  path="\$ZOPEN_PKGINSTALL/gawk/gawk/bin/gawk"
+  sed -i "s;/usr/bin/gawk;\$path;"  \${PWD}/bin/shdoc
+EOF
 }
 
 zopen_check_results()
