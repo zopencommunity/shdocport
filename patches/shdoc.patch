@@ -1,0 +1,10 @@
+diff --git a/shdoc b/shdoc
+index 5fbdad3..fe3ea06 100755
+--- a/shdoc
++++ b/shdoc
+@@ -1,4 +1,4 @@
+-#!/usr/bin/gawk -f
++#! /bin/env gawk -f
+ # vim: ft=awk ts=4 sw=4
+ 
+ BEGIN {

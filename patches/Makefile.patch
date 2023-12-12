@@ -1,0 +1,10 @@
+diff --git a/examples/Makefile b/examples/Makefile
+index 04dbcef..a379454 100644
+--- a/examples/Makefile
++++ b/examples/Makefile
+@@ -4,4 +4,4 @@ OBJECTS = $(patsubst %.sh, %.md, $(wildcard *.sh))
+ all: $(OBJECTS)
+ 
+ %.md: %.sh
+-	$(SHDOC) < $^ > $@
++	gawk -f $(SHDOC) < $^ > $@
