@@ -6,7 +6,7 @@ shdoc is a documentation generator for bash/zsh/sh for generating API documentat
 
 Generate documentation with the following command:
 
-`$ gawk -f shdoc < lib.sh > doc.md`
+`$ shdoc < lib.sh > doc.md`
 
 Source [examples/readme-example.sh](https://github.com/reconquest/shdoc/blob/master/examples/readme-example.sh)
 
